@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # my apps for chiro_project
+    'users',
+    'patients',
+    'appointments',
+    'treatments',
 ]
 
 MIDDLEWARE = [
