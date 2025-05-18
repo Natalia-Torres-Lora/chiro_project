@@ -1,34 +1,128 @@
-# chiro_project
-# chiro_project
-# Chiropractor Patient Management System
+# 🏥 Chiro Care – Chiropractor Patient Management System
 
-## Description
-This is a full-stack patient management system designed for a chiropractor's office. It enables chiropractors to manage patients, appointments, treatments, and notes, with user authentication and role-based access.
+**Chiro Care** is a Django-based web application designed to help chiropractic clinics efficiently manage patients, appointments, treatments, and documentation. This project is built with Django REST Framework, PostgreSQL, Docker, and deployed on AWS—demonstrating real-world backend engineering skills in a healthcare context.
 
-## API Reference
+> **Final Project for Certification: NuCamp Backend, SQL and DevOps with Python Bootcamp**
 
-| Endpoint                     | Method | Description                          | Params                     |
-|-----------------------------|--------|--------------------------------------|----------------------------|
-| /patients                   | GET    | List all patients                    | None                       |
-| /patients/<id>              | GET    | Get a specific patient               | `id` (int)                 |
-| /appointments               | POST   | Create a new appointment             | JSON body                  |
-| /appointments/<id>          | PUT    | Update an appointment                | `id` (int), JSON body      |
-| /treatments                 | GET    | List all treatments                  | None                       |
-| /appointments/<id>/notes    | POST   | Add a note to an appointment         | `id` (int), JSON body      |
+---
 
-> Replace these with your actual Flask or Django endpoints.
+## 🚀 Features
 
-## Retrospective
+- **User Authentication & Role-Based Access**
+  - **Chiropractors:** Full access to patient and treatment records
+  - **Patients:** View-only access to their own records and appointments
+- **Patient Management:** Chiropractors can create, read, update, and delete patient records
+- **Appointment Scheduling:** Smart scheduling with conflict detection
+- **Treatment Management:** Track and link treatments to patients and appointments
+- **Private Notes:** Chiropractor-only notes for each treatment session
+- **Admin Dashboard:** Full data access and control via Django Admin interface
 
-### How did the project's design evolve over time?
-Initially, I started with raw SQL and a lightweight Flask app to practice database interactions. As I progressed, I transitioned to Django for the final implementation to take advantage of its robust admin interface, built-in ORM, and authentication system. The schema was refined to support many-to-many relationships, bridge tables, and better normalization.
+---
 
-### Did you choose to use an ORM or raw SQL? Why?
-I chose to use an ORM because it provides safer, more maintainable, and more readable code. During early development in Flask, I used SQLAlchemy; later in Django, I leveraged the built-in ORM. However, I still wrote raw SQL for specific performance queries or complex joins where needed.
+## 🛠️ Tech Stack
 
-### What future improvements are in store, if any?
-- Add role-based permissions (admin, chiropractor, receptionist)
-- Integrate billing/invoicing and insurance claim tracking
-- Enable calendar syncing (Google Calendar API)
-- Add automated email reminders for upcoming appointments
-- Enhance performance with caching and optimized indexing
+- **Backend:** Django, Django REST Framework
+- **Database:** PostgreSQL
+- **Containerization:** Docker, Docker Compose
+- **Authentication:** Django built-in with custom permissions
+- **Deployment:** AWS (EC2, RDS, optional S3)
+- **CI/CD:** GitHub + AWS (optional)
+
+---
+
+## 📁 Project Structure
+
+```
+chiro_project/
+├── chiro_project/         # Project settings and URLs
+├── app/               # Main application logic (models, views, etc.)
+├── manage.py
+├── Dockerfile
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## 🐳 Local Development (Docker)
+
+```bash
+# Clone the repository
+git clone https://github.com/Natalia-Torres-Lora/chiro_project.git
+cd chiro_project
+
+# Build and start containers
+docker-compose up --build
+
+# Apply migrations
+docker-compose exec web python manage.py migrate
+
+# Create a superuser
+docker-compose exec web python manage.py createsuperuser
+```
+
+---
+
+## 🔗 Sample API Endpoints
+
+| Endpoint               | Method         | Description                          |
+|------------------------|---------------|--------------------------------------|
+| `/api/login/`          | POST          | User login                           |
+| `/api/patients/`       | GET, POST     | List or create patients              |
+| `/api/patients/<id>/`  | GET, PUT, DELETE | View, update, or delete a patient |
+| `/api/appointments/`   | GET, POST     | View or schedule appointments        |
+| `/api/treatments/`     | GET, POST     | View or record treatments            |
+
+
+---
+
+## 🌐 Deployment on AWS
+
+This project is deployed using:
+
+- **EC2** for Django app
+- **RDS** for PostgreSQL database
+- **S3** (optional) for media/static file storage
+- **Elastic Beanstalk** or Docker on EC2 for hosting
+- Environment variables managed via EC2 or EB configuration
+
+---
+
+## 🔐 Environment Variables (`.env` example)
+
+```env
+DEBUG=True
+SECRET_KEY=your-secret-key
+ALLOWED_HOSTS=localhost 127.0.0.1
+DATABASE_NAME=chiro_project_db
+DATABASE_USER=postgres
+DATABASE_PASSWORD=postgres
+DATABASE_HOST=db
+DATABASE_PORT=5432
+```
+
+---
+<!-- 
+## 📸 Screenshots
+
+*(Add screenshots here if available)* -->
+
+---
+
+## ✅ Future Improvements
+
+- Email notifications for appointments
+- Patient self-registration
+- API pagination & filtering
+- Unit and integration testing
+- Swagger/OpenAPI docs
+
+---
+
+## ✍️ Author
+
+Natalia Torres Lora  
+Backend Developer | NuCamp Graduate
+
+[LinkedIn](https://www.linkedin.com/in/natalia-torres-lora/)  
+[GitHub](https://github.com/Natalia-Torres-Lora)
